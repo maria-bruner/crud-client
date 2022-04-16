@@ -1,0 +1,30 @@
+{
+  "pessoas": [
+    {
+      "name": "Carol Rodrigues",
+      "email": "caroline@gmail.com",
+      "estado": "MG",
+      "cidade": "Aimorés",
+      "telefone": "99 3322-5566",
+      "id": 1
+    },
+
+    {
+      "name": "Maria Carolina",
+      "email": "maria@gmail.com",
+      "estado": "MG",
+      "cidade": "Aimorés",
+      "telefone": "99 3322-4455",
+      "id": 1
+    },
+
+    {
+      "name": "Luana Gabriela",
+      "email": "luana@gmail.com",
+      "estado": "SC",
+      "cidade": "Blumenau",
+      "telefone": "47 3322-1111",
+      "id": 1
+    }
+  ]
+}

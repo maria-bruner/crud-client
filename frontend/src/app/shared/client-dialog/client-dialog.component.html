@@ -1,0 +1,47 @@
+<h1 *ngIf="!isChange" mat-dialog-title>Cadastrar Cliente</h1>
+<h1 *ngIf="isChange" mat-dialog-title>Alterar Cliente</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome sobrenome" [formControl]="nameControl" [(ngModel)]="data.name"
+      pattern="^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$" required>
+    <mat-error *ngIf="nameControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="email@exemplo.com" [formControl]="emailControl" [(ngModel)]="data.email"
+      pattern="^\w+@[a-z]+(\.[a-z]+){1,2}$" required>
+    <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select [formControl]="stateControl" [(ngModel)]="data.state" (selectionChange)="selectCities()" required>
+      <mat-option *ngFor="let e of estados" [value]="e.sigla">{{e.sigla}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="stateControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cidade</mat-label>
+    <mat-select [formControl]="cityControl" [(ngModel)]="data.city" [disabled]="stateControl.invalid" required>
+      <mat-option *ngFor="let c of cidades" [value]="c.nome">{{c.nome}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="cityControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Telefone</mat-label>
+    <input matInput placeholder="(00) 0000-0000" [formControl]="telephoneControl" [(ngModel)]="data.telephone"
+      pattern="^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$" required>
+    <mat-error *ngIf="telephoneControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button *ngIf="!isChange" (click)="insert()" cdkFocusInitial>Cadastrar</button>
+  <button mat-button *ngIf="isChange" (click)="update()" cdkFocusInitial>Alterar</button>
+</div>
